@@ -1,13 +1,3 @@
-*node_modules/*
-**/node_modules
-build
-npm-debug.log
-*.env
-.DS_Store
-.cache
-bundle.js.map
-.eslintcache
-
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
@@ -33,7 +23,6 @@ bundle.js.map
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
 
 # local env files
 .env.local
@@ -43,9 +32,3 @@ yarn-error.log*
 
 # vercel
 .vercel
-
-# next
-.next
-
-#vscode
-.vscode
