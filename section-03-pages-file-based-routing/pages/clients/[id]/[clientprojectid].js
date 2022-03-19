@@ -3,8 +3,7 @@ import { useRouter } from 'next/router';
 function SelectedClientProjectPage() {
   const router = useRouter();
 
-  // url: http://localhost:3000/clients/max/project1
-  console.log(router.query); //{id: 'max', clientprojectid: 'project1'}
+  console.log(router.query);
 
   return (
     <div>
