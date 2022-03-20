@@ -27,13 +27,10 @@ async function getData() {
 export async function getStaticProps(context) {
   const { params } = context;
   const productId = params.pid;
-
   const data = await getData();
-
   const product = data.products.find((product) => product.id === productId);
 
   if (!product) {
-    //if not found we get redirected to 404 page
     return { notFound: true };
   }
 
@@ -42,14 +39,12 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths() {
   const data = await getData();
-
   const ids = data.products.map((product) => product.id);
-
   const pathsWithParams = ids.map((id) => ({ params: { pid: id } }));
 
   return {
     paths: pathsWithParams,
-    fallback: true, //tells nexts that even if an id value isnt found, we still might be able to render a page (dont have to define all dyanmic id pages)
+    fallback: true,
   };
 }
 
