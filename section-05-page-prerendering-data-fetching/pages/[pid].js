@@ -11,6 +11,10 @@ function ProductDetailPage(props) {
   );
 }
 
+//for dynamic routes we need to tell nextjs which instances of dynamic pages should be regenerated
+//dynamic pages dont just need data: we also need to know which [id] values will be available
+//so long story short we need to use getStaticPaths
+
 export async function getStaticProps(context) {
   const { params } = context;
   const productId = params.pid;
