@@ -4,10 +4,6 @@ import path from 'path';
 function ProductDetailPage(props) {
   const { loadedProduct } = props;
 
-  if (!loadedProduct) {
-    return <p>Loading...</p>;
-  }
-
   return (
     <>
       <h1>{loadedProduct.title}</h1>
@@ -16,39 +12,35 @@ function ProductDetailPage(props) {
   );
 }
 
-export async function getStaticProps(context) {
-  const { params } = context;
-  const productId = params.pid;
+async function getData() {
   const filePath = path.join(process.cwd(), 'data', 'dummy-backend.json');
   const jsonData = await fs.readFile(filePath);
   const data = JSON.parse(jsonData);
+
+  return data;
+}
+
+export async function getStaticProps(context) {
+  const { params } = context;
+  const productId = params.pid;
+
+  const data = await getData();
 
   const product = data.products.find((product) => product.id === productId);
 
   return { props: { loadedProduct: product } };
 }
 
-//the goal of this function is tell nextjs which instances of
-//this dynamic page should be generated
 export async function getStaticPaths() {
+  const data = await getData();
+
+  const ids = data.products.map((product) => product.id);
+
+  const pathsWithParams = ids.map((id) => ({ params: { pid: id } }));
+
   return {
-    paths: [
-      { params: { pid: 'p1' } }, //we want to prerender this
-      //{ params: { pid: 'p2' } }, //dont want to pregenerate
-      //{ params: { pid: 'p3' } }, //dont want to pregenerate
-    ],
-    fallback: true, //tell nextjs that even pages not listed here
-    //can be valid values that should be loaded when they are visited
-    //they arent pregenerted they are instead generated
-    //when a request reaches the server
-
-    //BUT THE PROBLEM IS YOU CANT REACH THOSE OTHER ID ROUTES IF YOU
-    //NAVIGATE TO THEM VIA THE URL INSTEAD OF A LINK
-    //so need to add a guard in the component above
-
-    //fallback: 'blocking'
-    //this will wait until all data is loaded first
-    //if you use fallback: blocking, you don't need to add the above guard
+    paths: pathsWithParams,
+    fallback: false,
   };
 }
 
