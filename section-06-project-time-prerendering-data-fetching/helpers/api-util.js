@@ -22,10 +22,12 @@ export async function getFeaturedEvents() {
   return allEvents.filter((event) => event.isFeatured);
 }
 
-export function getFilteredEvents(dateFilter) {
+export async function getFilteredEvents(dateFilter) {
   const { year, month } = dateFilter;
 
-  let filteredEvents = DUMMY_EVENTS.filter((event) => {
+  const allEvents = await getAllEvents();
+
+  let filteredEvents = allEvents.filter((event) => {
     const eventDate = new Date(event.date);
     return (
       eventDate.getFullYear() === year && eventDate.getMonth() === month - 1
