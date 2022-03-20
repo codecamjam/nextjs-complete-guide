@@ -16,6 +16,7 @@ function HomePage(props) {
 //prepares props for your component
 //ie the props param in HomePage(props)
 export async function getStaticProps() {
+  console.log('regenerating');
   const filePath = path.join(process.cwd(), 'data', 'dummy-backend.json');
   const jsonData = await fs.readFile(filePath);
   const data = JSON.parse(jsonData);
@@ -24,6 +25,7 @@ export async function getStaticProps() {
     props: {
       products: data.products,
     },
+    revalidate: 10, //time in seconds that we wait to regenerate
   };
 }
 
