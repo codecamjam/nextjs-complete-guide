@@ -10,7 +10,20 @@ function HomePage() {
     const enteredEmail = emailInputRef.current.value;
     const enteredFeedback = feedbackInputRef.current.value;
 
-    fetch({});
+    const reqBody = {
+      email: enteredEmail,
+      text: enteredFeedback,
+    };
+
+    //don't need an absolute path
+    //bc this will be appended as an abs path after our domain
+    fetch('/api/feedback', {
+      method: 'POST',
+      body: JSON.stringify(reqBody),
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data));
   }
 
   return (
