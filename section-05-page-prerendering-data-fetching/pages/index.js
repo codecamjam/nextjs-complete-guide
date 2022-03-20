@@ -1,13 +1,19 @@
 import fs from 'fs/promises';
 import path from 'path';
+import Link from 'next/link';
 
 function HomePage(props) {
   const { products } = props;
 
+  //THIS HAPPENS WHEN WE CLICK A LINK!
+  //   Error: getStaticPaths is required for dynamic SSG pages and is missing for '/[pid]'.
+  // Read more: https://err.sh/next.js/invalid-getstaticpaths-value
   return (
     <ul>
       {products.map((product) => (
-        <li key={product.id}>{product.title}</li>
+        <li key={product.id}>
+          <Link href={`/${product.id}`}>{product.title}</Link>
+        </li>
       ))}
     </ul>
   );
