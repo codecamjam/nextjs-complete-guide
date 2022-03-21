@@ -1,20 +1,32 @@
+import { useState } from 'react';
 import { buildFeedbackPath, extractFeedback } from '../api/feedback';
 
 function FeedbackPage(props) {
+  const [feedbackData, setFeedbackData] = useState();
+
+  async function loadFeedbackHandler(id) {
+    const response = await fetch(`/api/${id}`); // /api/some-feedback-id
+    const data = await response.json();
+    setFeedbackData(data.feedback);
+  }
+
   return (
-    <ul>
-      {props.feedbackItems.map((item) => (
-        <li key={item.id}>{item.text}</li>
-      ))}
-    </ul>
+    <>
+      {feedbackData && <p>{feedbackData.email}</p>}
+      <ul>
+        {props.feedbackItems.map((item) => (
+          <li key={item.id}>
+            {item.text}{' '}
+            <button onClick={loadFeedbackHandler.bind(null, item.id)}>
+              Show Details
+            </button>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }
 
-//DONT USE FETCH IN GETSTATICPROPS OR
-//GETSERVERSIDEPROPS TO TALK TO YOUR
-//OWN API!!!!!!
-//instead write node logic that should
-//execute here directly in this function
 export async function getStaticProps() {
   const filePath = buildFeedbackPath();
   const data = extractFeedback(filePath);
