@@ -1,17 +1,1 @@
-[
-  {
-    "id": "2022-03-20T23:26:35.695Z",
-    "email": "test@test.com",
-    "text": "Does this work?"
-  },
-  {
-    "id": "2022-03-20T23:27:48.859Z",
-    "email": "test2@test.com",
-    "text": "Does this work again?"
-  },
-  {
-    "id": "2022-03-20T23:44:29.881Z",
-    "email": "test3@test.com",
-    "text": "another test!"
-  }
-]
+[{"id":"2022-03-20T23:26:35.695Z","email":"test@test.com","text":"Does this work?"},{"id":"2022-03-20T23:27:48.859Z","email":"test2@test.com","text":"Does this work again?"},{"id":"2022-03-20T23:44:29.881Z","email":"test3@test.com","text":"another test!"},{"id":"2022-03-21T00:43:38.158Z","email":"test4@test.com","text":"wow look at that"}]
