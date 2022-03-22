@@ -11,11 +11,6 @@ export function NotificationContextProvider(props) {
 
   function showNotificationHandler(notificationData) {
     setActiveNotification(notificationData);
-    // setActiveNotification({
-    //   title: notification.title,
-    //   message: notification.message,
-    //   status: notification.status,
-    // });
   }
 
   function hideNotificationHandler() {
