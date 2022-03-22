@@ -9,7 +9,6 @@ function NewsletterRegistration() {
     event.preventDefault();
 
     const enteredEmail = emailInputRef.current.value;
-    console.log('look ' + enteredEmail);
 
     fetch('/api/newsletter', {
       method: 'POST',
