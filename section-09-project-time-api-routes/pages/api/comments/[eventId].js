@@ -35,9 +35,8 @@ function handler(req, res) {
       { id: 'c1', name: 'Max', text: 'A first comment' },
       { id: 'c2', name: 'Manuel', text: 'A second comment' },
     ];
+    res.status(200).json({ comments: dummyList });
   }
-
-  res.status(200).json({ comments: dummyList });
 }
 
 export default handler;
