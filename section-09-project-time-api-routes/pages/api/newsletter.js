@@ -16,7 +16,7 @@ async function handler(req, res) {
 
     const client = await MongoClient.connect(DB);
     const db = client.db();
-    await db.collection('emails').insertOne({ email: userEmail });
+    await db.collection('newsletter').insertOne({ email: userEmail });
 
     client.close();
 
