@@ -1,7 +1,8 @@
 import React from 'react';
+import PostContent from '../../components/posts/post-detail/post-content';
 
 function PostDetailPage() {
-  return <div>PostDetailPage</div>;
+  return <PostContent />;
 }
 
 export default PostDetailPage;
